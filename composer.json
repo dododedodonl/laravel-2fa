@@ -1,0 +1,38 @@
+{
+    "name": "dododedodonl/laravel-2fa",
+    "description": "Simple way to add two-factor authentication to your laravel application with minimal setup required.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tom",
+            "email": "dododedodonl@thor.edu",
+            "homepage": "https://github.com/dododedodonl"
+        }
+    ],
+    "homepage": "https://github.com/dododedodonl/laravel-2fa",
+    "keywords": ["laravel", "laravel-2fa", "otp", "two factor authentication"],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/support": "^5.7 | ^6",
+        "bacon/bacon-qr-code": "^2.0",
+        "spomky-labs/otphp": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "dododedodonl\\laravel2fa\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "dododedodonl\\laravel2fa\\TwoFactorAuthenticationServiceProvider"
+            ],
+            "aliases": {
+                "TwoFactor": "dododedodonl\\laravel2fa\\Facades\\TwoFactor"
+            }
+        }
+    },
+    "suggest": {
+        "ext-imagick": "Required to use the web setup for secrets."
+    }
+}
