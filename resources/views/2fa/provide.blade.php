@@ -15,7 +15,7 @@
                             <label for="2fa_token" class="col-md-4 col-form-label text-md-right">{{ __('Token') }}</label>
 
                             <div class="col-md-6">
-                                <input id="2fa_token" type="2fa_token" class="form-control @error('2fa_token') is-invalid @enderror" name="2fa_token" value="{{ old('2fa_token') }}" required autocomplete="off" autofocus>
+                                <input id="2fa_token" type="text" class="form-control @error('2fa_token') is-invalid @enderror" name="2fa_token" required autocomplete="off" autofocus>
 
                                 @error('2fa_token')
                                     <span class="invalid-feedback" role="alert">
