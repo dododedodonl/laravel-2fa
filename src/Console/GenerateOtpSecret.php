@@ -45,7 +45,7 @@ class GenerateOtpSecret extends Command
             }
         }
 
-        $otp = $this->newOtp(config('app.name').' '.$username);
+        $otp = $this->newOtp($username);
         $user->otp_secret = $otp->getSecret();
 
         $r = $this->option('terminal') ? new TerminalTextRenderer() : new PlainTextRenderer();

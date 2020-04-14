@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-2fa` will be documented in this file.
 
+## Version 0.4
+
+### Changed
+- `newOtp` function of `Traits\SharedMethods` has a changed signature, now including the issuer which defaults to the app.name config value
+- make issuer configurable and label a property on the user model
+
 ## Version 0.3
 
 ### Added

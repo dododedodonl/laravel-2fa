@@ -34,6 +34,16 @@ return [
     'user-model' => 'App\\User',
 
     /*
+    * Property on the user model used as OTP label
+    */
+    'user-name' => 'name',
+
+    /*
+     * Name used as OTP issuer
+     */
+    'otp-issuer' => config('app.name', 'Laravel 2fa'),
+
+    /*
      * Number of minutes without activity to revalidate with a token request.
      * Set to 0 to disable the refresh timeout.
      */

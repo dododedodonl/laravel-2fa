@@ -58,7 +58,9 @@ class SetupSecret
      */
     protected function createToken($user, $secret = null)
     {
-        $otp = $this->newOtp(config('app.name').' '.$user->username, $secret);
+        $labelProperty = config('laravel-2fa.user-name', 'name');
+
+        $otp = $this->newOtp($user->{$labelProperty}, $secret);
 
         $qrCode = $this->base64QrCode($otp->getProvisioningUri());
 

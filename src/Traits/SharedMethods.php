@@ -44,11 +44,22 @@ trait SharedMethods
     /**
      * Verifies a token
      *
-     * @param string $label
+     * @param string|null $label
+     * @param string|null $secret if null a new secret is generated
+     * @param string|null $issuer defaults to app.name
      * @return OTPHP\TOTP totp object
      */
-    protected function newOtp($label='token', $secret=null) {
+    protected function newOtp($label = null, $secret = null, $issuer = null) {
         $otp =  TOTP::create($secret);
+
+        if(is_null($issuer)) {
+            $issuer = config('laravel-2fa.otp-issuer');
+        }
+        $otp->setIssuer($issuer);
+
+        if(is_null($label)) {
+            $label = '';
+        }
         $otp->setLabel($label);
 
         return $otp;
