@@ -65,7 +65,7 @@ If you discover any security related issues, please email dododedodonl@thor.edu 
 
 ## Notes
 
-This packages assumed you use Bootstrap 4 as css framework.
+This packages assumed you use Bootstrap 4 as css framework. However, this is not a requirement, you can just change the views to your css framework.
 
 ## License
 
