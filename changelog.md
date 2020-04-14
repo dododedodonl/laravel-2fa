@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-2fa` will be documented in this file.
 
+## Version 0.5
+
+### Added
+- added bootstrap 3 views, default is still bootstrap 4
+- registers @error and @enderror blade directives if laravel version is < 5.8.13
+
+### Changed
+- change how migrations work / are published
+
+### Fixed
+- fixed view publishing bug
+- removed old() from provide & setup token views
+- fixed input types of provide & setup token views
+
 ## Version 0.4
 
 ### Changed
