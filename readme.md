@@ -5,13 +5,37 @@
 
 ## Installation
 
-Via Composer
+### Step 1
+
+Install using composer
 
 ``` bash
 composer require dododedodonl/laravel-2fa
+```
+
+### Step 2
+
+Migrate your database. This adds the field `otp_secret` to the `users` table after the `password` field.  
+If you have a different setup then this, publish the migration and edit it before migrating.
+
+``` bash
 php artisan migrate
 ```
 
+
+### Step 3
+
+Either configure web-based secret setup (by enabling the `php-imagick` extension), or make an error message visible when a user has no secret set manually using artisan.
+
+#### Error on login
+Edit your login form page, and add this somewhere when secret setup via web is disabled to display the correct errors.
+``` blade
+@error('otp_error')
+<div class="alert alert-danger" role="alert">{{ $message }}</div>
+@enderror
+```
+
+### Vendor assets
 Optionally publish config, migration or views
 
 ``` bash
@@ -24,36 +48,38 @@ php artisan vendor:publish --tag "laravel-2fa.views"
 php artisan vendor:publish --provider "dododedodonl\laravel2fa\TwoFactorAuthenticationServiceProvider"
 ```
 
-### Error on login
-Edit your login form page, and add this somewhere when secret setup via web is disabled to display the correct errors.
-``` blade
-@error('otp_error')
-    <div class="alert alert-danger" role="alert">{{ $message }}</div>
-@enderror
-```
-
 ## Usage
 
-### Per route
-The package adds a middleware alias, named `2fa`.
+### Protect a route
+A middleware alias is added called `2fa`. You can assign this to individual routes or controllers like all other middleware.
+
 ``` php
-Route::get('/', 'HomeController@index')->name('home')->middleware('2fa');
+Route::get('home', 'HomeController@index')->name('home')->middleware('2fa');
 ```
-By default, the middleware is disabled in some cases (for example in local environment). To override this, use `2fa:force` as middleware option.
+#### Disabled by default
+The middleware is disabled by default in some cases (for example in local environment). Override this by using `2fa:force` as middleware.
 
 ### Globally
-To use it globally, add `\dododedodonl\laravel2fa\Http\Middleware\Verify2faAuth` to the `web` group in your `app/Http/kernel.php`. It's own routes and the routes named login and logout will still work when logged in. On all other routes the middleware will be applied.
-
+To use it globally, add `\dododedodonl\laravel2fa\Http\Middleware\Verify2faAuth` to the `web` group in your `app/Http/kernel.php`. Routes starting with `2fa.` and the route `logout` will still work when logged in. On all other routes the middleware will be applied and a token will be asked.
 
 ## Secret setup
 
 ### Via web
 This is disabled by default because it requires `ext-imagick` php extension. Edit `config/laravel-2fa.php` or edit your environment file.  
-Add `OTP_SETUP_ENABLED=true` to your `.env` file  to enable.
+Add `OTP_SETUP_ENABLED=true` to your `.env` file to enable.
 
 ### Via artisan
 Set a secret for a user: `php artisan 2fa:generate {username}`.  
 Revoke a secret for a user: `php artisan 2fa:revoke {username}`.
+
+## Troubleshoot
+
+### No token is asked of me
+By default, the middleware is disabled when the environment is set to local to make testing easier. Use `2fa:force` to force the execution of the middelware.
+
+### I get redirected back to the login page without error
+When no secret is found in the database, and web-based secret setup is not configured, you are redirected back to the login page, logged out.  
+An error does accompany this, but you need to edit your `login.blade.php` file to show it as suggested in one of the installation steps.
 
 ## Contributing
 
