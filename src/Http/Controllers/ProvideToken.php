@@ -45,7 +45,7 @@ class ProvideToken
         );
 
         if($verified) {
-            return redirect($request->session()->pull('_2fa.intended', '/'));
+            return redirect($request->session()->pull('_2fa.intended', config('laravel-2fa.provide-default-redirect', '/')));
         }
 
         return view('dododedodonl::2fa.provide')->withErrors([

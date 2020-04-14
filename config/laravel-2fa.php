@@ -8,6 +8,20 @@ return [
     'setup-enabled' => env('OTP_SETUP_ENABLED', false),
 
     /*
+     * Default place to redirect to after setup
+     * Value is directly provided to redirect() as first argument
+     * Note: this redirect is only used if no intended location was found
+     */
+    'setup-default-redirect' => '/',
+
+    /*
+     * Default place to redirect to after a token is provided
+     * Value is directly provided to redirect() as first argument
+     * Note: this redirect is only used if no intended location was found
+     */
+    'provide-default-redirect' => '/',
+
+    /*
      * Your fqdn to the user model.
      */
     'user-model' => 'App\\User',

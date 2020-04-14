@@ -109,7 +109,7 @@ class SetupSecret
 
         if($verified) {
             $user->save();
-            return redirect($request->session()->pull('_2fa.intended', '/'));
+            return redirect($request->session()->pull('_2fa.intended', config('laravel-2fa.setup-default-redirect', '/')));
         }
 
         $request->session()->keep('_2fa.secret');
