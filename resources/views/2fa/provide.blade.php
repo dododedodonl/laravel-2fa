@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends(config('laravel-2fa.blade-extends', 'layouts.app'))
 
 @section('content')
 <div class="container">

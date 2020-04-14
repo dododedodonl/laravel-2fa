@@ -44,6 +44,11 @@ return [
     'otp-issuer' => config('app.name', 'Laravel 2fa'),
 
     /*
+     * Path that is supplied to @extends() in the blade templates
+     */
+    'blade-extends' => 'layouts.app',
+
+    /*
      * Number of minutes without activity to revalidate with a token request.
      * Set to 0 to disable the refresh timeout.
      */
