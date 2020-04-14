@@ -22,6 +22,13 @@ return [
     'provide-default-redirect' => '/',
 
     /*
+     * Routes that are allowed without the force directive
+     * All routes within the '2fa' group (eg. the name starting with '2fa.') will be allowed automatically
+     * Note: this should include the logout route
+     */
+    'allowed-routes' => ['logout'],
+
+    /*
      * Your fqdn to the user model.
      */
     'user-model' => 'App\\User',

@@ -37,7 +37,7 @@ class Verify2faAuth
         }
 
         $name = $request->route()->getName();
-        if(Str::startsWith($name, '2fa.') || $name == 'logout') {
+        if(Str::startsWith($name, '2fa.') || \in_array($name, config('laravel-2fa.allowed-routes', ['logout']))) {
             //Make sure it is possible to reach the 2fa routes and the logout route
             return $next($request);
         }
