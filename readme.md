@@ -91,7 +91,8 @@ If you discover any security related issues, please email dododedodonl@thor.edu 
 
 ## Notes
 
-This packages assumed you use Bootstrap 4 as css framework. However, this is not a requirement, you can just change the views to your css framework.
+This packages assumed you use Bootstrap 4 as css framework. Bootstrap 3 views are also provided, configure them by calling `dododedodonl\laravel2fa\TwoFactorAuthentication::useBootstrapThree()`.  
+However, this is not a requirement, you can just change the views to your css framework.
 
 ## License
 

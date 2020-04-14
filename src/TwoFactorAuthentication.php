@@ -5,11 +5,57 @@ namespace dododedodonl\laravel2fa;
 use Exception;
 use Illuminate\Foundation\Application;
 
+use Illuminate\Support\Str;
+
 class TwoFactorAuthentication
 {
     use Traits\SharedMethods;
 
     protected $app;
+
+    static protected $defaultViewsBase = 'dododedodonl::2fa.';
+
+    /**
+     * Sets the default views base to bootstrap 3 views
+     *
+     * @param string $base new view base
+     */
+    static public function useBootstrapThree()
+    {
+        static::setDefaultViewsBase('dododedodonl::2fa.bootstrap3');
+    }
+
+    /**
+     * Sets the default views base
+     *
+     * @param string $base new view base
+     */
+    static public function setDefaultViewsBase($base)
+    {
+        static::$defaultViewsBase = Str::finish($base, '.');
+    }
+
+    /**
+     * Get the full view name with base
+     *
+     * @param string $view
+     * @return string
+     */
+    public function getViewName($view)
+    {
+        return self::$defaultViewsBase.$view;
+    }
+
+    /**
+     * Get the laravel view with base
+     *
+     * @param string $view
+     * @return view
+     */
+    public function view($view)
+    {
+        return view($this->getViewName($view));
+    }
 
     /**
      * Constructor

@@ -84,7 +84,7 @@ class SetupSecret
 
         $request->session()->flash('_2fa.secret', $secret);
 
-        return view('dododedodonl::2fa.setup')->withBase64QrCode($qrCode);
+        return resolve('laravel-2fa')->view('setup')->withBase64QrCode($qrCode);
     }
 
     /**
@@ -118,6 +118,6 @@ class SetupSecret
 
         list($secret, $qrCode) = $this->createToken($user, $request->session()->get('_2fa.secret'));
 
-        return view('dododedodonl::2fa.setup')->withBase64QrCode($qrCode)->withErrors(['2fa_token' => 'Please verify again (qr-code is the same).']);
+        return resolve('laravel-2fa')->view('setup')->withBase64QrCode($qrCode)->withErrors(['2fa_token' => 'Please verify again (qr-code is the same).']);
     }
 }

@@ -4,6 +4,7 @@ namespace dododedodonl\laravel2fa;
 
 use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class TwoFactorAuthenticationServiceProvider extends ServiceProvider
@@ -15,6 +16,10 @@ class TwoFactorAuthenticationServiceProvider extends ServiceProvider
      */
     public function boot(Filesystem $filesystem)
     {
+        if(\version_compare($this->app->version(), '5.8.13', '<')) {
+            $this->bootBlade();
+        }
+
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'dododedodonl');
 
         // Register routes
@@ -85,6 +90,26 @@ class TwoFactorAuthenticationServiceProvider extends ServiceProvider
             Console\GenerateOtpSecret::class,
             Console\RevokeOtpSecret::class,
         ]);
+    }
+
+    /**
+     * Add the blade error directive
+     *
+     * @return void
+     */
+    protected function bootBlade()
+    {
+        Blade::directive('error', function($expression) {
+            return '<?php if ($errors->has('.$expression.')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('.$expression.'); ?>';
+        });
+
+        Blade::directive('enderror', function($expression) {
+            return '<?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>';
+        });
     }
 
     /**
