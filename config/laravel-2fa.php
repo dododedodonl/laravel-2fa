@@ -3,7 +3,7 @@
 return [
     /*
      * Wether or not to enable the web setup.
-     * Note: this requires ext-imagick
+     * Note: this requires ext-imagick, and therefore disabled by default
      */
     'setup-enabled' => env('OTP_SETUP_ENABLED', false),
 
@@ -19,8 +19,8 @@ return [
     'refresh-timeout' => env('OTP_REFRESH_TIMEOUT', 15), // minutes
 
     /*
-     * Size of the token window used for verification to allow time variance.
-     * Default: 6, this allows for a little time variance
+     * Size of the token window used for verification to allow time variance between user and server
+     * Default: 6, this allows for a little time variance (6 times 30 seconds)
      */
     'token-verification-window' => env('OTP_TOKEN_VERIFICATION_WINDOW', 6), // number of tokens
 ];
