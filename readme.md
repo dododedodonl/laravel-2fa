@@ -15,10 +15,10 @@ composer require dododedodonl/laravel-2fa
 
 ### Step 2
 
-Migrate your database. This adds the field `otp_secret` to the `users` table after the `password` field.  
-If you have a different setup then this, publish the migration and edit it before migrating.
+Publish migration and run it. Change the migration if it does not fit your database schema.
 
 ``` bash
+php artisan vendor:publish --tag "laravel-2fa.migrations"
 php artisan migrate
 ```
 

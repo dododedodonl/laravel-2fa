@@ -2,6 +2,8 @@
 
 namespace dododedodonl\laravel2fa;
 
+use Illuminate\Support\Collection;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 
 class TwoFactorAuthenticationServiceProvider extends ServiceProvider
@@ -11,10 +13,9 @@ class TwoFactorAuthenticationServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Filesystem $filesystem)
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'dododedodonl');
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         // Register routes
         $this->app['router']->namespace('dododedodonl\\laravel2fa\\Http\\Controllers')
@@ -28,7 +29,7 @@ class TwoFactorAuthenticationServiceProvider extends ServiceProvider
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
-            $this->bootForConsole();
+            $this->bootForConsole($filesystem);
         }
     }
 
@@ -62,16 +63,16 @@ class TwoFactorAuthenticationServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function bootForConsole()
+    protected function bootForConsole(Filesystem $filesystem)
     {
         // Publishing the configuration file.
         $this->publishes([
             __DIR__.'/../config/laravel-2fa.php' => config_path('laravel-2fa.php'),
         ], 'laravel-2fa.config');
 
-        // Publishing the migrations.
+        // Publishing the migration.
         $this->publishes([
-            __DIR__.'/../database/migrations' => base_path('database/migrations'),
+            __DIR__.'/../database/migrations/add_otp_secret_to_users_table.php.stub' => $this->getMigrationFileName($filesystem),
         ], 'laravel-2fa.migrations');
 
         // Publishing view.
@@ -84,5 +85,22 @@ class TwoFactorAuthenticationServiceProvider extends ServiceProvider
             Console\GenerateOtpSecret::class,
             Console\RevokeOtpSecret::class,
         ]);
+    }
+
+    /**
+     * Returns existing migration file if found, else uses the current timestamp.
+     *
+     * @param Filesystem $filesystem
+     * @return string
+     */
+    protected function getMigrationFileName(Filesystem $filesystem): string
+    {
+        $timestamp = date('Y_m_d_His');
+
+        return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
+            ->flatMap(function ($path) use ($filesystem) {
+                return $filesystem->glob($path.'*_add_otp_secret_to_users_table.php');
+            })->push($this->app->databasePath()."/migrations/{$timestamp}_add_otp_secret_to_users_table.php")
+            ->first();
     }
 }
