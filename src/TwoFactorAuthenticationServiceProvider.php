@@ -82,8 +82,10 @@ class TwoFactorAuthenticationServiceProvider extends ServiceProvider
 
         // Publishing view.
         $this->publishes([
-            __DIR__.'/../resources/views' => public_path('resources/views/vendor/dododedodonl'),
-        ], 'laravel-2fa.views');
+           __DIR__.'/../resources/views' => resource_path('views/vendor/dododedodonl'),
+       ], 'laravel-2fa.views');
+
+
 
         // Register commands
         $this->commands([
