@@ -13,7 +13,7 @@
     "keywords": ["laravel", "laravel-2fa", "otp", "two factor authentication"],
     "require": {
         "php": ">=7.2",
-        "illuminate/support": "5.7.* | 5.8.* | ^6.0 | ^7.0",
+        "illuminate/support": "5.7.* | 5.8.* | ^6.0 | ^7.0 | ^8.0",
         "bacon/bacon-qr-code": "^2.0",
         "spomky-labs/otphp": "^10.0"
     },
