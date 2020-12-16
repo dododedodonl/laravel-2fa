@@ -3,11 +3,13 @@
 namespace dododedodonl\laravel2fa\Console;
 
 use BaconQrCode\Writer;
+use Exception;
 use Illuminate\Console\Command;
 use BaconQrCode\Renderer\PlainTextRenderer;
 use dododedodonl\laravel2fa\Console\Helpers\TerminalTextRenderer;
 
 use dododedodonl\laravel2fa\Traits\SharedMethods;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GenerateOtpSecret extends Command
 {
@@ -30,6 +32,7 @@ class GenerateOtpSecret extends Command
      * Execute the console command.
      *
      * @return mixed
+     * @throws Exception
      */
     public function handle() {
         $username = $this->argument('username');
@@ -39,6 +42,7 @@ class GenerateOtpSecret extends Command
         }
 
         $user = resolve('laravel-2fa')->userQuery()->where('username', $username)->firstOrFail();
+
         if( ! is_null($user->otp_secret)) {
             if( ! $this->confirm('This user already has a secret, are you sure you want to continue?')) {
                 return;
