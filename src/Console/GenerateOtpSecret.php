@@ -38,7 +38,8 @@ class GenerateOtpSecret extends Command
             $username = $this->ask('Username');
         }
 
-        $user = resolve('laravel-2fa')->userQuery()->where('username', $username)->first();
+        $user = resolve('laravel-2fa')->userQuery()->where('username', $username)->firstOrFail();
+
         if( ! is_null($user->otp_secret)) {
             if( ! $this->confirm('This user already has a secret, are you sure you want to continue?')) {
                 return;
