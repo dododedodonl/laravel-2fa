@@ -44,6 +44,11 @@ class Verify2faAuth
 
         //Check if the user is set up
         if( ! $this->isSetup($request)) {
+            if (! resolve('laravel-2fa')::isRequired() && $force != 'force') {
+                // 2fa is optional for this user if not setup unless the force flag is set
+                return $next($request);
+            }
+
             //Check if self setup is possible
             if ( ! resolve('laravel-2fa')->otpSetupEnabled()) {
                 //Logout and redirect to login page with an error
