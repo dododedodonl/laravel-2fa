@@ -1,5 +1,4 @@
 <?php
-
 namespace dododedodonl\laravel2fa\Traits;
 
 use Closure;
@@ -14,7 +13,7 @@ use Closure;
  */
 trait ResolvesRequired
 {
-    /** @var callable|null */
+    /** @var callable|boolean|null */
     protected static $requiredResolver = null;
 
     /**
@@ -23,8 +22,8 @@ trait ResolvesRequired
      */
     public static function resolveRequiredUsing($callback): void
     {
-        if(is_bool($callback)) {
-            $callback = function() use ($callback): bool {
+        if (is_bool($callback)) {
+            $callback = function () use ($callback): bool {
                 return $callback;
             };
         }
@@ -38,7 +37,7 @@ trait ResolvesRequired
      */
     public static function defaultRequiredResolver(): Closure
     {
-        return function(): bool {
+        return function (): bool {
             return true;
         };
     }
