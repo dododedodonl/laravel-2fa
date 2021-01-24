@@ -19,6 +19,8 @@ class ProvideToken
      */
     public function create(Request $request)
     {
+        abort_if(is_null($request->user()->otp_secret), 403, 'A secret is not set yet.');
+
         //Save previous intended url in order to route back after validation
         $intended = url()->previous();
         if(Str::endsWith($intended, 'login') || Str::contains($intended, '/2fa/')) {
