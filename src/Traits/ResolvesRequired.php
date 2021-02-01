@@ -14,7 +14,7 @@ use Closure;
  */
 trait ResolvesRequired
 {
-    /** @var callable|boolean|null */
+    /** @var callable|null */
     protected static $requiredResolver = null;
 
     /**
