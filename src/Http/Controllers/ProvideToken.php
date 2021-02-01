@@ -32,7 +32,7 @@ class ProvideToken
 
         $request->session()->put('_2fa.intended', $intended);
 
-        return resolve('laravel-2fa')->view('provide', ['secretSet' => $secretSet]);
+        return resolve('laravel-2fa')->view('provide')->with('secretSet', $secretSet);
     }
 
     /**

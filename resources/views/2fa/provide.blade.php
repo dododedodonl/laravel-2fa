@@ -35,9 +35,9 @@
                             </div>
                         </form>
                     @else
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ __('2FA is not setup for your user. Please contact a system administrator.') }}</strong>
-                        </span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ __('2FA is not setup for your user. Please contact a system administrator.') }}
+                        </div>
                     @endif
                 </div>
             </div>
