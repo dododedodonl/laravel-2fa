@@ -14,7 +14,7 @@ use Closure;
  */
 trait ResolvesRequired
 {
-    /** @var callable|boolean|null */
+    /** @var callable|null */
     protected static $requiredResolver = null;
 
     /**
@@ -23,6 +23,12 @@ trait ResolvesRequired
      */
     public static function resolveRequiredUsing($callback): void
     {
+        if(is_bool($callback)) {
+            $callback = function() use ($callback): bool {
+                return $callback;
+            };
+        }
+
         static::$requiredResolver = $callback;
     }
 
