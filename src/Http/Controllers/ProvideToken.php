@@ -19,7 +19,10 @@ class ProvideToken
      */
     public function create(Request $request)
     {
-        abort_if(is_null($request->user()->otp_secret), 403, 'A secret is not set yet.');
+        $secretSet = ! is_null($request->user()->otp_secret);
+        if (! $secretSet && config('laravel-2fa.setup-enabled')) {
+            return redirect()->route('2fa.setup');
+        }
 
         //Save previous intended url in order to route back after validation
         $intended = url()->previous();
@@ -29,7 +32,7 @@ class ProvideToken
 
         $request->session()->put('_2fa.intended', $intended);
 
-        return resolve('laravel-2fa')->view('provide');
+        return resolve('laravel-2fa')->view('provide', ['secretSet' => $secretSet]);
     }
 
     /**
