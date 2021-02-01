@@ -1,4 +1,5 @@
 <?php
+
 namespace dododedodonl\laravel2fa\Traits;
 
 use Closure;
