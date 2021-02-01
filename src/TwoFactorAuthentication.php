@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class TwoFactorAuthentication
 {
-    use Traits\SharedMethods;
+    use Traits\SharedMethods, Traits\ResolvesRequired;
 
     protected $app;
 
@@ -33,6 +33,11 @@ class TwoFactorAuthentication
     static public function setDefaultViewsBase($base)
     {
         static::$defaultViewsBase = Str::finish($base, '.');
+    }
+
+    public static function isRequired(): bool
+    {
+        return app()->call(static::$requiredResolver ?? static::defaultRequiredResolver());
     }
 
     /**
