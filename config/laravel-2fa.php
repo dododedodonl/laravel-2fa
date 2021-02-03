@@ -49,6 +49,11 @@ return [
     'blade-extends' => 'layouts.app',
 
     /*
+     * Section to override
+     */
+    'blade-content-section' => 'content',
+
+    /*
      * Number of minutes without activity to revalidate with a token request.
      * Set to 0 to disable the refresh timeout.
      */

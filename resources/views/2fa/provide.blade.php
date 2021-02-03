@@ -1,6 +1,6 @@
 @extends(config('laravel-2fa.blade-extends', 'layouts.app'))
 
-@section('content')
+@section(config('laravel-2fa.blade-content-section', 'content'))
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
