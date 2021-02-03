@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Two Factor Authentication') }}</div>
 
                 <div class="card-body">
-                    @if($secretSet)
+                    @if(isset($secretSet) && $secretSet)
                         <form role="form" method="POST" action="{{ route('2fa.provided') }}">
                             @csrf
 

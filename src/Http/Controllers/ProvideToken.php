@@ -53,7 +53,7 @@ class ProvideToken
             return redirect($request->session()->pull('_2fa.intended', config('laravel-2fa.provide-default-redirect', '/')));
         }
 
-        return resolve('laravel-2fa')->view('provide')->withErrors([
+        return resolve('laravel-2fa')->view('provide')->with('secretSet', true)->withErrors([
             '2fa_token' => 'Please enter a valid token.'
         ]);
     }
