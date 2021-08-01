@@ -61,6 +61,13 @@ class Verify2faAuth
             }
         }
 
+        //Save intended url in order to route back after validation
+        $intended = $request->getRequestUri();
+        if(Str::endsWith($intended, 'login') || Str::contains($intended, '/2fa/')) {
+            $intended = '/';
+        }
+        $request->session()->put('_2fa.intended', $intended);
+
         //Redirect to provide 2fa
         return redirect()->route('2fa.provide');
     }
