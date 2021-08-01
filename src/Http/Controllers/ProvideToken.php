@@ -24,14 +24,6 @@ class ProvideToken
             return redirect()->route('2fa.setup');
         }
 
-        //Save previous intended url in order to route back after validation
-        $intended = url()->previous();
-        if(Str::endsWith($intended, 'login') || Str::contains($intended, '/2fa/')) {
-            $intended = '/';
-        }
-
-        $request->session()->put('_2fa.intended', $intended);
-
         return resolve('laravel-2fa')->view('provide')->with('secretSet', $secretSet);
     }
 
