@@ -36,7 +36,7 @@
                         </form>
                     @else
                         <div class="alert alert-danger" role="alert">
-                            {{ __('2FA is not setup for your user. Please contact a system administrator.') }}
+                            {{ __('Two Factor Authentication is not setup for your user. Please contact a system administrator.') }}
                         </div>
                     @endif
                 </div>

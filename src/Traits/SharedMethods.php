@@ -3,6 +3,8 @@
 namespace dododedodonl\laravel2fa\Traits;
 
 use OTPHP\TOTP;
+use Illuminate\Http\Request;
+
 
 trait SharedMethods
 {
@@ -14,7 +16,8 @@ trait SharedMethods
      * @param int $window (optional) how big is the verify window
      * @return boolean valid or not
      */
-    protected function verifyToken(object $user, string $token, $window=6) {
+    protected function verifyToken(object $user, string $token, $window=null) {
+        $window = $window ?? config('laravel-2fa.token-verification-window');
         $otp = TOTP::create($user->otp_secret);
 
         return $otp->verify($token, null, $window);
