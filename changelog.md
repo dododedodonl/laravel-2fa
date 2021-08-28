@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-2fa` will be documented in this file.
 
+## Version 0.6
+
+### Added
+- Possibility for users to change their 2fa (thanks to [@niekBr](https://github.com/niekBr))
+- Allowed php 8.0
+
+### Changed
+- changed namespace to correct names
+
 ## Version 0.5
 
 ### Added

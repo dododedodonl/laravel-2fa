@@ -1,6 +1,6 @@
 <?php
 
-namespace dododedodonl\laravel2fa\Traits;
+namespace Dododedodonl\Laravel2fa\Traits;
 
 use OTPHP\TOTP;
 use Illuminate\Http\Request;

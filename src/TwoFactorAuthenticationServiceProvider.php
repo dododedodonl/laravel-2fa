@@ -1,6 +1,6 @@
 <?php
 
-namespace dododedodonl\laravel2fa;
+namespace Dododedodonl\Laravel2fa;
 
 use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;

@@ -1,11 +1,11 @@
 <?php
 
-namespace dododedodonl\laravel2fa\Console;
+namespace Dododedodonl\Laravel2fa\Console;
 
 use BaconQrCode\Writer;
 use Illuminate\Console\Command;
 
-use dododedodonl\laravel2fa\Traits\SharedMethods;
+use Dododedodonl\Laravel2fa\Traits\SharedMethods;
 
 class RevokeOtpSecret extends Command
 {

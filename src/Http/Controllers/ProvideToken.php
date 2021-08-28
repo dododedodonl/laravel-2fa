@@ -1,11 +1,11 @@
 <?php
 
-namespace dododedodonl\laravel2fa\Http\Controllers;
+namespace Dododedodonl\Laravel2fa\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-use dododedodonl\laravel2fa\Traits\SharedMethods;
+use Dododedodonl\Laravel2fa\Traits\SharedMethods;
 
 class ProvideToken
 {

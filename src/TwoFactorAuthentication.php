@@ -1,6 +1,6 @@
 <?php
 
-namespace dododedodonl\laravel2fa;
+namespace Dododedodonl\Laravel2fa;
 
 use Exception;
 use Illuminate\Foundation\Application;

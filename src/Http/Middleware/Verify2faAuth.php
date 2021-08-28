@@ -1,9 +1,9 @@
 <?php
 
-namespace dododedodonl\laravel2fa\Http\Middleware;
+namespace Dododedodonl\Laravel2fa\Http\Middleware;
 
 use Illuminate\Support\Str;
-use dododedodonl\laravel2fa\Traits\SharedMethods;
+use Dododedodonl\Laravel2fa\Traits\SharedMethods;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

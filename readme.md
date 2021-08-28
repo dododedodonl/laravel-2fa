@@ -45,7 +45,7 @@ php artisan vendor:publish --tag "laravel-2fa.migrations"
 php artisan vendor:publish --tag "laravel-2fa.views"
 
 # All
-php artisan vendor:publish --provider "dododedodonl\laravel2fa\TwoFactorAuthenticationServiceProvider"
+php artisan vendor:publish --provider "Dododedodonl\Laravel2fa\TwoFactorAuthenticationServiceProvider"
 ```
 
 ## Usage
@@ -60,16 +60,16 @@ Route::get('home', 'HomeController@index')->name('home')->middleware('2fa');
 The middleware is disabled by default in some cases (for example in local environment). Override this by using `2fa:force` as middleware.
 
 ### Globally
-To use it globally, add `\dododedodonl\laravel2fa\Http\Middleware\Verify2faAuth` to the `web` group in your `app/Http/kernel.php`. Routes starting with `2fa.` and the route `logout` will still work when logged in. On all other routes the middleware will be applied and a token will be asked.
+To use it globally, add `\Dododedodonl\Laravel2fa\Http\Middleware\Verify2faAuth` to the `web` group in your `app/Http/kernel.php`. Routes starting with `2fa.` and the route `logout` will still work when logged in. On all other routes the middleware will be applied and a token will be asked.
 
 ## Secret setup
 
 ### Via web
-This is disabled by default because it requires `ext-imagick` php extension. Edit `config/laravel-2fa.php` or edit your environment file.  
+This is disabled by default because it requires `ext-imagick` php extension. Edit `config/laravel-2fa.php` or edit your environment file.
 Add `OTP_SETUP_ENABLED=true` to your `.env` file to enable.
 
 ### Via artisan
-Set a secret for a user: `php artisan 2fa:generate {username}`.  
+Set a secret for a user: `php artisan 2fa:generate {username}`.
 Revoke a secret for a user: `php artisan 2fa:revoke {username}`.
 
 ## Troubleshoot
@@ -78,7 +78,7 @@ Revoke a secret for a user: `php artisan 2fa:revoke {username}`.
 By default, the middleware is disabled when the environment is set to local to make testing easier. Use `2fa:force` to force the execution of the middelware.
 
 ### I get redirected back to the login page without error
-When no secret is found in the database, and web-based secret setup is not configured, you are redirected back to the login page, logged out.  
+When no secret is found in the database, and web-based secret setup is not configured, you are redirected back to the login page, logged out.
 An error does accompany this, but you need to edit your `login.blade.php` file to show it as suggested in one of the installation steps.
 
 ## Contributing
@@ -91,7 +91,7 @@ If you discover any security related issues, please email dododedodonl@thor.edu 
 
 ## Notes
 
-This packages assumed you use Bootstrap 4 as css framework. Bootstrap 3 views are also provided, configure them by calling `dododedodonl\laravel2fa\TwoFactorAuthentication::useBootstrapThree()`.  
+This packages assumed you use Bootstrap 4 as css framework. Bootstrap 3 views are also provided, configure them by calling `Dododedodonl\Laravel2fa\TwoFactorAuthentication::useBootstrapThree()`.
 However, this is not a requirement, you can just change the views to your css framework.
 
 ## License

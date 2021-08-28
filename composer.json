@@ -19,16 +19,17 @@
     },
     "autoload": {
         "psr-4": {
-            "dododedodonl\\laravel2fa\\": "src/"
+            "dododedodonl\\laravel2fa\\": "src/",
+            "Dododedodonl\\Laravel2fa\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "dododedodonl\\laravel2fa\\TwoFactorAuthenticationServiceProvider"
+                "Dododedodonl\\Laravel2fa\\TwoFactorAuthenticationServiceProvider"
             ],
             "aliases": {
-                "TwoFactor": "dododedodonl\\laravel2fa\\Facades\\TwoFactor"
+                "TwoFactor": "Dododedodonl\\Laravel2fa\\Facades\\TwoFactor"
             }
         }
     },

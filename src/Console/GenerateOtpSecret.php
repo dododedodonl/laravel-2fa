@@ -1,13 +1,13 @@
 <?php
 
-namespace dododedodonl\laravel2fa\Console;
+namespace Dododedodonl\Laravel2fa\Console;
 
 use BaconQrCode\Writer;
 use Illuminate\Console\Command;
 use BaconQrCode\Renderer\PlainTextRenderer;
-use dododedodonl\laravel2fa\Console\Helpers\TerminalTextRenderer;
+use Dododedodonl\Laravel2fa\Console\Helpers\TerminalTextRenderer;
 
-use dododedodonl\laravel2fa\Traits\SharedMethods;
+use Dododedodonl\Laravel2fa\Traits\SharedMethods;
 
 class GenerateOtpSecret extends Command
 {

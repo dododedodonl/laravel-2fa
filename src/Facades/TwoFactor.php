@@ -1,6 +1,6 @@
 <?php
 
-namespace dododedodonl\laravel2fa\Facades;
+namespace Dododedodonl\Laravel2fa\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
