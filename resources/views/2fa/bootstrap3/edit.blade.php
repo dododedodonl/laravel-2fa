@@ -61,14 +61,14 @@
             <div class="panel-body">
                 @if(TwoFactor::isRequired())
                     <div class="alert alert-warning">
-                        2FA is required for some of your permissions, removing 2FA is not permitted.
+                        {{ __('Two Factor Authentication is required for some of your permissions, removing Two Factor Authentication is not permitted.') }}
                     </div>
                 @else
                     <div class="alert alert-warning">
-                        Removing 2FA will significantly decrease your account's security. This action is not recommended.
+                        {{ __('Removing Two Factor Authentication will significantly decrease your account\'s security. This action is not recommended.') }}
                     </div>
 
-                    <p>To remove 2FA from your account, Confirm by filling in a verify token from the authenticator app:</p>
+                    <p>{{ __('To remove Two Factor Authentication from your account, Confirm by filling in a verify token from the authenticator app:') }}</p>
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('2fa.destroy') }}">
                         @csrf
@@ -90,7 +90,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-danger">
-                                    {{ __('Remove 2FA') }}
+                                    {{ __('Remove Two Factor Authentication') }}
                                 </button>
                             </div>
                         </div>

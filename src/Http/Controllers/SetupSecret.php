@@ -121,7 +121,7 @@ class SetupSecret
     }
 
     /**
-     * Show the form for updating 2FA
+     * Show the form for updating Two Factor Authentication
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -139,7 +139,7 @@ class SetupSecret
     }
 
     /**
-     * Update 2FA token
+     * Update Two Factor Authentication token
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -184,7 +184,7 @@ class SetupSecret
     {
         $user = $this->getUserOrAbort($request);
         abort_if(is_null($user->otp_secret), 403, 'A secret is not set yet.');
-        abort_if(TwoFactor::isRequired(), 403, '2FA is required for some of your permissions, removing 2FA is not permitted.');
+        abort_if(TwoFactor::isRequired(), 403, 'Two Factor Authentication is required for some of your permissions, removing Two Factor Authentication is not permitted.');
 
         if (! $this->verifyToken($user, $request->input('2fa_token'))) {
             return redirect()->route('2fa.edit')->withErrors(['2fa_token' => 'Please enter a valid token to confirm.']);
