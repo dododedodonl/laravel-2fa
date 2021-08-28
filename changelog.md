@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-2fa` will be documented in this file.
 
-## Version 0.6
+## Version 0.9
 
 ### Added
 - Possibility for users to change their 2fa (thanks to [@niekBr](https://github.com/niekBr))
@@ -10,6 +10,26 @@ All notable changes to `laravel-2fa` will be documented in this file.
 
 ### Changed
 - changed namespace to correct names
+
+## Version 0.8.1
+
+### Changed
+- Change redirect url to include query string
+
+## Version 0.8
+
+### Changed
+- Fixed a bug
+
+## Version 0.7
+
+### Added
+- Configuration option for required 2fa
+
+## Version 0.6
+
+### Added
+- support for laravel 8
 
 ## Version 0.5
 
