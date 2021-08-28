@@ -69,7 +69,7 @@
                             {{ __('Removing Two Factor Authentication will significantly decrease your account\'s security. This action is not recommended.') }}
                         </div>
 
-                        <p>{{ __('To remove Two Factor Authentication from your account, Confirm by filling in a verify token from the authenticator app:') }}</p>
+                        <p>{{ __('To remove Two Factor Authentication from your account, confirm by filling in a verify token from the authenticator app:') }}</p>
 
                         <form role="form" method="POST" action="{{ route('2fa.destroy') }}">
                             @csrf
