@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-2fa` will be documented in this file.
 
+## Version 0.10
+
+### Changed
+- Changed way of matching redirect
+
 ## Version 0.9
 
 ### Added
