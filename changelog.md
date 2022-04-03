@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-2fa` will be documented in this file.
 
+## Version 0.11
+- Support laravel 9
+
 ## Version 0.10
 
 ### Changed
